@@ -285,6 +285,28 @@ footer{grid-template-columns:1fr 1fr;padding:2rem 1.5rem}
 .bi{grid-template-columns:1fr;gap:.5rem}
 .r2c{grid-template-columns:1fr}
 }
+
+/* ── AUDIO PLAYER (Ouvir Artigo) ─────────────────────────── */
+.aplayer{background:var(--cream);border:1px solid var(--bd);border-radius:14px;max-width:760px;margin:2.5rem auto 0;display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;flex-wrap:wrap}
+.ap-btn{display:flex;align-items:center;justify-content:center;width:48px;height:48px;min-width:48px;border-radius:50%;background:var(--rust);color:var(--paper);border:none;cursor:pointer;flex-shrink:0;transition:transform .15s,background .2s}
+.ap-btn:hover{background:#a8380d}.ap-btn:active{transform:scale(.94)}
+.ap-btn svg{width:20px;height:20px;fill:currentColor}
+.ap-mid{flex:1;min-width:160px}
+.ap-top{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;margin-bottom:.5rem}
+.ap-label{display:flex;align-items:center;gap:.4rem;font-family:var(--s);font-size:13px;font-weight:600;color:var(--ink)}
+.ap-label svg{width:14px;height:14px;stroke:var(--rust);fill:none;stroke-width:2}
+.ap-time{font-family:var(--m);font-size:11px;color:var(--muted);flex-shrink:0}
+.ap-bar{height:6px;border-radius:99px;overflow:hidden;background:rgba(13,12,10,.10)}
+.ap-fill{height:100%;border-radius:99px;background:var(--rust);width:0%;transition:width .2s ease-out}
+.ap-speeds{display:flex;gap:4px;padding:4px;border-radius:99px;background:var(--paper);border:1px solid var(--bd);flex-shrink:0}
+.ap-sp{border:none;cursor:pointer;border-radius:99px;padding:.25rem .65rem;font-family:var(--m);font-size:12px;font-weight:500;background:transparent;color:var(--muted);transition:background .15s,color .15s}
+.ap-sp[aria-checked="true"]{background:var(--rust);color:var(--paper)}
+.ap-sp:hover{color:var(--ink)}.ap-sp[aria-checked="true"]:hover{color:var(--paper)}
+.ap-btn:focus-visible,.ap-sp:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){.ap-fill,.ap-btn{transition:none}}
+@media(max-width:560px){.aplayer{margin:1.5rem 1.5rem 0}}
+
 </style>
 </head>
 <body>
@@ -1378,6 +1400,137 @@ document.querySelectorAll('.idx-item,.bi,.ge').forEach(el=>{el.style.opacity='0.
 
 // Close modal on bg click
 document.getElementById('modal-new').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ─── AUDIO PLAYER: "Ouvir Artigo" (Web Speech API) ──────────
+(function(){
+  if(!('speechSynthesis' in window)) return; // navegador sem suporte: não injeta
+
+  var ICON_PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var ICON_PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+  var ICON_HEAD='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 16a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2zM3 16a2 2 0 0 0 2 2h1v-5H5a2 2 0 0 0-2 2z"/></svg>';
+  var ICON_WAVE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h2M7 6v12M12 3v18M17 8v8M22 12h-2"/></svg>';
+  var SPEEDS=[1,1.25,1.5];
+
+  function splitSentences(t){return t.replace(/\s+/g,' ').trim().match(/[^.!?]+[.!?]*\s*/g)||[t];}
+  function fmt(s){if(!isFinite(s)||s<0)s=0;var m=Math.floor(s/60),x=Math.floor(s%60);return m+':'+(x<10?'0':'')+x;}
+
+  // Extrai o texto legível do corpo do artigo (ignora referências e títulos de seção de refs)
+  function extractText(bodyEl){
+    var parts=[];
+    bodyEl.querySelectorAll('p, h2, h3').forEach(function(el){
+      if(el.closest('.refs-box')) return;           // pula a seção de referências/DOIs
+      if(el.querySelector('.ref-doi')) return;
+      var txt=el.textContent.replace(/\s+/g,' ').trim();
+      if(txt) parts.push(txt);
+    });
+    return parts.join('. ');
+  }
+
+  function createPlayer(title, text){
+    var state={playing:false,progress:0,rate:1,idx:0};
+    var sentences=splitSentences(text), offsets=[], acc=0;
+    sentences.forEach(function(s){offsets.push(acc);acc+=s.length;});
+    var totalChars=Math.max(acc,1);
+    var words=text.trim().split(/\s+/).filter(Boolean).length;
+    var baseSec=(words/155)*60;
+    var voice=null;
+    function pickVoice(){var v=speechSynthesis.getVoices();voice=v.find(function(x){return /pt[-_]?BR/i.test(x.lang);})||v.find(function(x){return /^pt/i.test(x.lang);})||null;}
+    pickVoice(); speechSynthesis.addEventListener('voiceschanged',pickVoice);
+
+    // markup
+    var el=document.createElement('section');
+    el.className='aplayer';
+    el.setAttribute('role','region');
+    el.setAttribute('aria-label','Player de áudio: ouvir '+title);
+    el.innerHTML=
+      '<div aria-live="polite" class="sr-only"></div>'+
+      '<button type="button" class="ap-btn" aria-pressed="false" aria-label="Ouvir '+title+' em áudio">'+ICON_PLAY+'</button>'+
+      '<div class="ap-mid">'+
+        '<div class="ap-top">'+
+          '<span class="ap-label">'+ICON_HEAD+'<span class="ap-ltxt">Ouvir artigo</span></span>'+
+          '<span class="ap-time">0:00 / '+fmt(baseSec)+'</span>'+
+        '</div>'+
+        '<div class="ap-bar" role="progressbar" aria-label="Progresso da leitura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0% — 0:00 de '+fmt(baseSec)+'"><div class="ap-fill"></div></div>'+
+      '</div>'+
+      '<div class="ap-speeds" role="radiogroup" aria-label="Velocidade de reprodução">'+
+        SPEEDS.map(function(s){return '<button type="button" class="ap-sp" role="radio" aria-checked="'+(s===1)+'" aria-label="Velocidade '+s+' vezes" data-sp="'+s+'">'+s+'\u00d7</button>';}).join('')+
+      '</div>';
+
+    var live=el.querySelector('.sr-only');
+    var btn=el.querySelector('.ap-btn');
+    var ltxt=el.querySelector('.ap-ltxt');
+    var lab=el.querySelector('.ap-label');
+    var timeEl=el.querySelector('.ap-time');
+    var bar=el.querySelector('.ap-bar');
+    var fill=el.querySelector('.ap-fill');
+    var speedBtns=el.querySelectorAll('.ap-sp');
+
+    function totalSec(){return baseSec/state.rate;}
+    function render(){
+      var pct=Math.round(state.progress);
+      fill.style.width=pct+'%';
+      var ts=totalSec(), es=ts*(state.progress/100);
+      timeEl.textContent=fmt(es)+' / '+fmt(ts);
+      bar.setAttribute('aria-valuenow',pct);
+      bar.setAttribute('aria-valuetext',pct+'% — '+fmt(es)+' de '+fmt(ts));
+      btn.setAttribute('aria-pressed',state.playing);
+      btn.innerHTML=state.playing?ICON_PAUSE:ICON_PLAY;
+      btn.setAttribute('aria-label',state.playing?('Pausar a leitura de '+title):('Ouvir '+title+' em áudio'));
+      lab.innerHTML=(state.playing?ICON_WAVE:ICON_HEAD)+'<span class="ap-ltxt">'+(state.playing?'Ouvindo o artigo':'Ouvir artigo')+'</span>';
+    }
+    function speakFrom(i){
+      if(i>=sentences.length){state.playing=false;state.progress=100;state.idx=0;live.textContent='Leitura concluída.';render();return;}
+      state.idx=i;
+      var u=new SpeechSynthesisUtterance(sentences[i]);
+      u.rate=state.rate;u.lang='pt-BR';if(voice)u.voice=voice;
+      u.onboundary=function(e){var g=offsets[i]+(e.charIndex||0);state.progress=Math.min(100,(g/totalChars)*100);render();};
+      u.onend=function(){if(state.playing)speakFrom(i+1);};
+      speechSynthesis.speak(u);
+    }
+    btn.addEventListener('click',function(){
+      if(!state.playing){
+        if(speechSynthesis.paused&&speechSynthesis.speaking){speechSynthesis.resume();live.textContent='Retomando a leitura.';}
+        else{speechSynthesis.cancel();state.progress=0;speakFrom(0);live.textContent='Iniciando a leitura de '+title+'.';}
+        state.playing=true;
+      }else{speechSynthesis.pause();state.playing=false;live.textContent='Leitura pausada.';}
+      render();
+    });
+    speedBtns.forEach(function(b){
+      b.addEventListener('click',function(){
+        state.rate=parseFloat(b.dataset.sp);
+        speedBtns.forEach(function(x){x.setAttribute('aria-checked',x===b);});
+        live.textContent='Velocidade '+state.rate+' vezes.';
+        if(state.playing){speechSynthesis.cancel();speakFrom(state.idx);}
+        render();
+      });
+    });
+    render();
+    return el;
+  }
+
+  // Cancela a fala ao trocar de página/artigo (SPA)
+  var _go=window.go;
+  if(typeof _go==='function'){
+    window.go=function(p){speechSynthesis.cancel();return _go.apply(this,arguments);};
+  }
+
+  // Injeta um player no topo do corpo de cada artigo
+  function injectPlayers(){
+    document.querySelectorAll('[id^="pg-artigo-"] .art-body').forEach(function(body){
+      if(body.querySelector('.aplayer')) return; // evita duplicar
+      var page=body.closest('.pg');
+      var h1=page.querySelector('.art-hero h1');
+      var title=h1?h1.textContent.replace(/\s+/g,' ').trim().split(':')[0]:'este artigo';
+      var text=extractText(body);
+      if(!text) return;
+      var player=createPlayer(title,text);
+      body.insertBefore(player,body.firstChild);
+    });
+  }
+  if(document.readyState!=='loading')injectPlayers();
+  else document.addEventListener('DOMContentLoaded',injectPlayers);
+})();
+
 </script>
 </body>
 </html>
