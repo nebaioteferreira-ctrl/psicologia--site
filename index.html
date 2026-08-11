@@ -307,6 +307,33 @@ footer{grid-template-columns:1fr 1fr;padding:2rem 1.5rem}
 @media(prefers-reduced-motion:reduce){.ap-fill,.ap-btn{transition:none}}
 @media(max-width:560px){.aplayer{margin:1.5rem 1.5rem 0}}
 
+
+/* ── SEO: SUMÁRIO, FAQ, ARTIGOS RELACIONADOS ─────────────── */
+.art-toc{max-width:760px;margin:2rem auto 0;background:var(--cream);border:1px solid var(--bd);border-radius:10px;padding:1.25rem 1.5rem}
+.art-toc-tit{font-family:var(--m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.art-toc ol{list-style:none;counter-reset:toc}
+.art-toc li{counter-increment:toc;padding:.4rem 0;border-bottom:1px solid var(--bd);font-size:14px}
+.art-toc li:last-child{border-bottom:none}
+.art-toc a{display:flex;gap:.6rem;color:var(--ink);text-decoration:none;cursor:pointer;transition:color .15s}
+.art-toc a:hover{color:var(--rust)}
+.art-toc a::before{content:counter(toc);font-family:var(--m);font-size:12px;color:var(--rust);flex-shrink:0;width:16px}
+.art-toc a:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.faq-block{margin-top:3.5rem}
+.faq-item{padding:1.5rem 0;border-bottom:1px solid var(--bd)}
+.faq-item:last-child{border-bottom:none}
+.faq-item h3{font-family:var(--f);font-size:1.05rem;letter-spacing:-.01em;margin-bottom:.6rem;color:var(--ink)}
+.faq-item p{font-size:14.5px;line-height:1.75;color:var(--muted);margin:0}
+.related-box{max-width:760px;margin:3.5rem auto 0;padding-top:2rem;border-top:1px solid var(--bd)}
+.related-tit{font-family:var(--m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.related-list{display:grid;gap:.75rem}
+.related-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:var(--cream);border:1px solid var(--bd);border-radius:10px;cursor:pointer;text-decoration:none;color:var(--ink);transition:background .15s,border-color .15s}
+.related-link:hover{background:var(--paper);border-color:var(--rust)}
+.related-link:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.related-link-tit{font-family:var(--f);font-size:.95rem;letter-spacing:-.01em}
+.related-link-cat{font-family:var(--m);font-size:10px;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+.inline-link{color:var(--rust);text-decoration:none;border-bottom:1px solid rgba(192,65,15,.35);cursor:pointer;transition:border-color .15s}
+.inline-link:hover{border-color:var(--rust)}
+
 </style>
 </head>
 <body>
@@ -413,6 +440,8 @@ footer{grid-template-columns:1fr 1fr;padding:2rem 1.5rem}
   <li class="idx-item" onclick="go('artigo-fluxo')"><div><span class="idx-cat ce">Psicologia Positiva</span><h3 class="idx-title">Fluxo: a psicologia da experiência ótima</h3><p class="idx-exc">O estado em que a ação e a consciência se fundem, o tempo se distorce e o esforço parece desaparecer. Csikszentmihalyi passou décadas mapeando as condições que produzem o "flow" — e por que ele é um dos melhores preditores de bem-estar duradouro.</p><div class="idx-meta"><span>Csikszentmihalyi · Nakamura</span><span>11 min</span></div></div><span class="idx-arrow">Ler artigo</span></li>
   <li class="idx-item" onclick="go('artigo-expertise')"><div><span class="idx-cat cc">Psicologia Cognitiva</span><h3 class="idx-title">A regra das 10.000 horas: o que a pesquisa original realmente disse</h3><p class="idx-exc">O estudo de Ericsson sobre violinistas virou um mito de autoajuda distorcido por Malcolm Gladwell. Voltamos à fonte primária: o que a "prática deliberada" realmente exige, por que o número 10.000 nunca foi uma lei e o que a ciência da expertise diz sobre talento e treino.</p><div class="idx-meta"><span>Ericsson et al. · Macnamara</span><span>12 min</span></div></div><span class="idx-arrow">Ler artigo</span></li>
   <li class="idx-item" onclick="go('artigo-neuroplasticidade')"><div><span class="idx-cat cn">Neurociência</span><h3 class="idx-title">Os taxistas de Londres e a prova visual da neuroplasticidade</h3><p class="idx-exc">Memorizar 25.000 ruas fez o hipocampo de motoristas de táxi crescer fisicamente — um dos experimentos mais elegantes já feitos sobre como a experiência remodela a estrutura do cérebro adulto. Maguire documentou em neuroimagem o que antes era apenas teoria.</p><div class="idx-meta"><span>Maguire et al. · Woollett</span><span>11 min</span></div></div><span class="idx-arrow">Ler artigo</span></li>
+  <li class="idx-item" onclick="go('artigo-inteligencia-emocional')"><div><span class="idx-cat cs">Psicologia Social</span><h3 class="idx-title">Inteligência emocional: o que a ciência realmente confirma (e o que é mito)</h3><p class="idx-exc">Da proposta acadêmica de Salovey e Mayer em 1990 à simplificação best-seller de Goleman — o que meta-análises com milhares de participantes confirmam sobre QE, e onde a evidência é mais fraca do que a cultura popular sugere.</p><div class="idx-meta"><span>Salovey &amp; Mayer · Joseph &amp; Newman</span><span>13 min</span></div></div><span class="idx-arrow">Ler artigo</span></li>
+  <li class="idx-item" onclick="go('artigo-procrastinacao')"><div><span class="idx-cat cc">Psicologia Cognitiva</span><h3 class="idx-title">A ciência da procrastinação: por que adiamos o que sabemos que devemos fazer</h3><p class="idx-exc">Não é preguiça, não é má gestão do tempo. Décadas de pesquisa convergem numa explicação diferente: procrastinação crônica é uma falha específica de regulação emocional, com mecanismos mapeados e estratégias testadas para reduzi-la.</p><div class="idx-meta"><span>Steel · Sirois &amp; Pychyl · Ainslie</span><span>14 min</span></div></div><span class="idx-arrow">Ler artigo</span></li>
 </ul>
 </div>
 
@@ -941,6 +970,165 @@ footer{grid-template-columns:1fr 1fr;padding:2rem 1.5rem}
 </div>
 </div>
 
+
+<!-- ARTIGO: INTELIGÊNCIA EMOCIONAL -->
+<div id="pg-artigo-inteligencia-emocional" class="pg">
+<div class="art-hero">
+  <button class="bc" onclick="go('artigos')">Artigos</button>
+  <p class="art-hero-cat cs-h">Psicologia Social · Emocional</p>
+  <h1>Inteligência emocional: o que a ciência<br>realmente confirma (e o que é mito)</h1>
+  <p class="subtitle">Da proposta acadêmica de Salovey e Mayer em 1990 à simplificação best-seller de Goleman — o que meta-análises com milhares de participantes confirmam sobre inteligência emocional, e onde a evidência é mais fraca do que a cultura popular sugere.</p>
+  <div class="art-hero-meta"><span>Baseado em: Salovey &amp; Mayer (1990) · Joseph &amp; Newman (2010) · Waterhouse (2006)</span><span>13 min de leitura</span></div>
+</div>
+<div class="art-body">
+<p class="lead-p">Em 1990, dois psicólogos americanos, Peter Salovey e John Mayer, publicaram um artigo técnico numa revista de circulação modesta, a <em>Imagination, Cognition and Personality</em>, propondo um novo constructo psicológico que chamaram de "inteligência emocional". O artigo passou quase despercebido por cinco anos. Em 1995, o jornalista científico Daniel Goleman publicou um livro de mesmo nome que venderia mais de 5 milhões de cópias, seria traduzido para 40 idiomas e transformaria a expressão num fenômeno cultural — presente em processos seletivos, treinamentos corporativos e conversas de elevador muito antes que a ciência tivesse tempo de validar, refutar ou refinar as afirmações que o livro fazia. Entre a proposta acadêmica original e o fenômeno best-seller, algo importante se perdeu — e vale a pena recuperar.</p>
+
+<nav class="art-toc" aria-label="Sumário do artigo">
+  <p class="art-toc-tit">Neste artigo</p>
+  <ol>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-origem')">A origem acadêmica: Salovey e Mayer, 1990</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-quatro-ramos')">O modelo dos quatro ramos</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-goleman')">Goleman e a popularização — e onde exagerou</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-evidencia')">O que a meta-análise mostra sobre desempenho no trabalho</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-criticas')">As críticas: QE é apenas personalidade com outro nome?</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-regulacao')">Autorregulação emocional: a ponte com a procrastinação</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('ie-faq')">Perguntas frequentes</a></li>
+  </ol>
+</nav>
+
+<h2 id="ie-origem">A origem acadêmica: Salovey e Mayer, 1990</h2>
+<p>A proposta original de Salovey e Mayer (1990) era bem mais modesta do que o que viria depois. Definiram inteligência emocional como um subconjunto da inteligência social: a capacidade de monitorar os próprios sentimentos e os dos outros, discriminar entre eles e usar essa informação para guiar o pensamento e a ação. Não era uma teoria sobre sucesso na vida, liderança ou caráter moral — era uma proposta técnica e circunscrita sobre um tipo específico de processamento de informação, situada dentro da tradição das pesquisas sobre inteligências múltiplas de Howard Gardner e da inteligência social de Edward Thorndike, que remonta aos anos 1920.</p>
+
+<h2 id="ie-quatro-ramos">O modelo dos quatro ramos</h2>
+<p>Mayer, Salovey e o colaborador David Caruso refinaram a proposta original num modelo de habilidade com quatro ramos hierarquicamente organizados: (1) <strong>percepção emocional</strong> — identificar emoções em rostos, vozes e obras de arte; (2) <strong>uso da emoção para facilitar o pensamento</strong> — como estados emocionais direcionam a atenção e influenciam o raciocínio; (3) <strong>compreensão emocional</strong> — entender como emoções se combinam, evoluem e se transformam; e (4) <strong>gestão emocional</strong> — regular as próprias emoções e as dos outros de forma eficaz.</p>
+<p>A decisão metodológica mais importante dessa linha de pesquisa foi tratar a inteligência emocional como uma <em>habilidade</em>, testável por desempenho — com respostas objetivamente mais ou menos corretas, à maneira de um teste de QI — e não como um questionário de autorrelato em que a pessoa simplesmente diz o quanto se considera emocionalmente inteligente. O instrumento resultante, o MSCEIT (Mayer-Salovey-Caruso Emotional Intelligence Test), pede, por exemplo, que o respondente identifique a emoção predominante num rosto fotografado ou avalie qual ação regularia melhor um estado emocional específico — com gabarito baseado em consenso de especialistas e da população geral.</p>
+
+<h2 id="ie-goleman">Goleman e a popularização — e onde exagerou</h2>
+<p>O livro de Goleman (1995) expandiu radicalmente o escopo do conceito. Incorporou não apenas os quatro ramos de Mayer e Salovey, mas também persistência, automotivação, empatia, habilidade social e autocontrole geral — misturando o modelo de habilidade original com traços amplos de personalidade e competências sociais. A afirmação mais citada do livro, de que a inteligência emocional "importa duas vezes mais" que o QI para o sucesso na vida, tornou-se uma das estatísticas mais repetidas da psicologia popular — e uma das menos rastreáveis a uma fonte empírica sólida.</p>
+<p>Os próprios Mayer e Salovey expressaram reservas públicas sobre a direção que Goleman deu ao conceito. Mayer, em particular, distinguiu entre os "modelos mistos" de inteligência emocional (que combinam habilidade com traços de personalidade, motivação e valores — a versão de Goleman) e o "modelo de habilidade" mais estrito e psicometricamente defensável que ele e Salovey haviam originalmente proposto. Essa distinção — modelo de habilidade versus modelo misto — é hoje a linha divisória mais importante para avaliar qualquer alegação científica sobre inteligência emocional.</p>
+
+<div class="pullq"><p>"Há uma diferença enorme entre dizer que emoções contêm informação útil e processável — o que é cientificamente defensável — e dizer que QE prevê o sucesso na vida melhor que QI, uma alegação que a evidência simplesmente não sustenta com a força que a cultura popular assume."</p><cite>John D. Mayer · American Psychologist, 2008</cite></div>
+
+<h2 id="ie-evidencia">O que a meta-análise mostra sobre desempenho no trabalho</h2>
+<p>Joseph e Newman (2010), num modelo integrativo publicado no <em>Journal of Applied Psychology</em>, agregaram dezenas de estudos para testar a relação entre inteligência emocional e desempenho profissional. O achado central: medidas de inteligência emocional baseadas em habilidade predizem desempenho no trabalho de forma modesta, mas estatisticamente significativa — e esse efeito é substancialmente mais forte em profissões de alta demanda emocional, como atendimento ao cliente, enfermagem e vendas, do que em trabalhos técnicos com pouca interação interpessoal.</p>
+<p>Um achado mais desconfortável para a narrativa popular: medidas de autorrelato ("mistas") de inteligência emocional mostraram sobreposição substancial com traços de personalidade já bem estabelecidos, sobretudo conscienciosidade e baixo neuroticismo (estabilidade emocional). Em outras palavras, parte considerável do que os testes populares de QE medem já era capturado por instrumentos de personalidade que existem desde muito antes do conceito de inteligência emocional ser cunhado.</p>
+
+<h2 id="ie-criticas">As críticas: QE é apenas personalidade com outro nome?</h2>
+<p>A crítica mais rigorosa ao campo veio de Lynn Waterhouse (2006), numa revisão publicada na <em>Educational Psychologist</em> que examinou conjuntamente inteligência emocional, inteligências múltiplas e o "efeito Mozart". Waterhouse argumentou que grande parte da pesquisa em inteligência emocional carece do rigor psicométrico exigido de um verdadeiro constructo de inteligência — nomeadamente, evidência robusta de validade discriminante (a prova de que o constructo mede algo distinto do que já é medido por QI e personalidade) e de validade preditiva incremental (a prova de que adiciona poder explicativo além desses instrumentos já existentes).</p>
+<p>O consenso que emergiu depois dessas críticas é diferenciado, não uma rejeição total: o modelo de habilidade de Mayer e Salovey, testado por desempenho, sobrevive melhor ao escrutínio do que os modelos mistos popularizados posteriormente e os testes de autorrelato vendidos comercialmente. A inteligência emocional parece ser um constructo psicologicamente real, mas mais estreito, mais correlacionado com constructos já conhecidos, e com um poder preditivo mais modesto do que a versão vendida ao público em geral.</p>
+
+<h2 id="ie-regulacao">Autorregulação emocional: a ponte com a procrastinação</h2>
+<p>É precisamente no quarto ramo do modelo — a gestão ou regulação emocional — que a pesquisa mais recente encontrou aplicações concretas e valiosas. A falha nesse tipo específico de autorregulação está diretamente implicada em outro fenômeno amplamente estudado pela psicologia cognitiva contemporânea: a procrastinação. Sirois e Pychyl (2013) demonstraram que procrastinar não é primariamente um problema de gestão de tempo, mas uma tentativa — de curto prazo e mal calibrada — de regular um estado emocional negativo, adiando uma tarefa aversiva para aliviar o desconforto imediato às custas do "eu futuro". Exploramos esse mecanismo em profundidade em <a class="inline-link" href="#" onclick="event.preventDefault();go('artigo-procrastinacao')">outro artigo, dedicado à ciência da procrastinação</a>, que pode ser lido como uma continuação natural deste.</p>
+
+<div class="faq-block" id="ie-faq">
+  <h2>Perguntas frequentes</h2>
+  <div class="faq-item"><h3>Inteligência emocional pode ser desenvolvida?</h3><p>Em alguma medida, sim. Programas estruturados de treinamento em reconhecimento e regulação emocional mostram ganhos mensuráveis em habilidades específicas — como identificar emoções em expressões faciais ou aplicar estratégias de regulação mais eficazes. Os efeitos, porém, tendem a ser modestos e específicos ao domínio treinado, não uma transformação geral e duradoura de "personalidade emocional", como a literatura de autoajuda às vezes sugere.</p></div>
+  <div class="faq-item"><h3>Qual a diferença entre QI e QE?</h3><p>QI mede capacidades cognitivas gerais — raciocínio abstrato, memória de trabalho, velocidade de processamento. QE, no modelo de habilidade de Mayer e Salovey, mede especificamente a capacidade de processar informação emocional com precisão. São constructos correlacionados, mas parcialmente distintos — com sobreposição significativa também com traços de personalidade, o que torna sua separação empírica mais complexa do que a popularização sugere.</p></div>
+  <div class="faq-item"><h3>Existe um teste científico validado de inteligência emocional?</h3><p>Sim — o MSCEIT (Mayer-Salovey-Caruso Emotional Intelligence Test) é o instrumento de habilidade mais validado academicamente, com gabarito baseado em consenso de especialistas. Isso o distingue de testes de autorrelato disponíveis gratuitamente na internet, que medem principalmente a autopercepção da pessoa sobre suas próprias competências emocionais — não seu desempenho real nelas.</p></div>
+</div>
+
+<div class="related-box">
+  <p class="related-tit">Leia também</p>
+  <div class="related-list">
+    <a class="related-link" href="#" onclick="event.preventDefault();go('artigo-procrastinacao')"><span class="related-link-tit">A ciência da procrastinação</span><span class="related-link-cat">Psic. Cognitiva</span></a>
+    <a class="related-link" href="#" onclick="event.preventDefault();go('artigo-dunning')"><span class="related-link-tit">Efeito Dunning-Kruger</span><span class="related-link-cat">Metacognição</span></a>
+    <a class="related-link" href="#" onclick="event.preventDefault();go('pesq-bandura')"><span class="related-link-tit">Albert Bandura e a autoeficácia</span><span class="related-link-cat">Pesquisador</span></a>
+  </div>
+</div>
+
+<div class="refs-box">
+  <h2>Referências primárias</h2>
+  <div class="ref-row"><span class="ref-n">1</span><div class="ref-txt"><strong>Salovey, P., &amp; Mayer, J. D.</strong> (1990). Emotional Intelligence. <em>Imagination, Cognition and Personality, 9</em>(3), 185-211.<br><a class="ref-doi" href="https://doi.org/10.2190/DUGG-P24E-52WK-6CDG" target="_blank" rel="noopener">doi.org/10.2190/DUGG-P24E-52WK-6CDG</a></div></div>
+  <div class="ref-row"><span class="ref-n">2</span><div class="ref-txt"><strong>Mayer, J. D., Salovey, P., &amp; Caruso, D. R.</strong> (2008). Emotional Intelligence: New Ability or Eclectic Traits? <em>American Psychologist, 63</em>(6), 503-517.<br><a class="ref-doi" href="https://doi.org/10.1037/0003-066X.63.6.503" target="_blank" rel="noopener">doi.org/10.1037/0003-066X.63.6.503</a></div></div>
+  <div class="ref-row"><span class="ref-n">3</span><div class="ref-txt"><strong>Goleman, D.</strong> (1995). <em>Emotional Intelligence: Why It Can Matter More Than IQ.</em> Bantam Books.<br><a class="ref-doi" href="https://scholar.google.com/scholar?q=Goleman+1995+Emotional+Intelligence" target="_blank" rel="noopener">Google Scholar</a></div></div>
+  <div class="ref-row"><span class="ref-n">4</span><div class="ref-txt"><strong>Joseph, D. L., &amp; Newman, D. A.</strong> (2010). Emotional Intelligence: An Integrative Meta-Analysis and Cascading Model. <em>Journal of Applied Psychology, 95</em>(1), 54-78.<br><a class="ref-doi" href="https://doi.org/10.1037/a0017286" target="_blank" rel="noopener">doi.org/10.1037/a0017286</a></div></div>
+  <div class="ref-row"><span class="ref-n">5</span><div class="ref-txt"><strong>Waterhouse, L.</strong> (2006). Multiple Intelligences, the Mozart Effect, and Emotional Intelligence: A Critical Review. <em>Educational Psychologist, 41</em>(4), 207-225.<br><a class="ref-doi" href="https://doi.org/10.1207/s15326985ep4104_1" target="_blank" rel="noopener">doi.org/10.1207/s15326985ep4104_1</a></div></div>
+</div>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Inteligência emocional pode ser desenvolvida?","acceptedAnswer":{"@type":"Answer","text":"Em alguma medida, sim. Programas estruturados de treinamento em reconhecimento e regulação emocional mostram ganhos mensuráveis em habilidades específicas, embora os efeitos tendam a ser modestos e específicos ao domínio treinado."}},{"@type":"Question","name":"Qual a diferença entre QI e QE?","acceptedAnswer":{"@type":"Answer","text":"QI mede capacidades cognitivas gerais como raciocínio abstrato e memória de trabalho. QE, no modelo de habilidade de Mayer e Salovey, mede a capacidade de processar informação emocional com precisão. São constructos correlacionados, mas parcialmente distintos."}},{"@type":"Question","name":"Existe um teste científico validado de inteligência emocional?","acceptedAnswer":{"@type":"Answer","text":"Sim, o MSCEIT (Mayer-Salovey-Caruso Emotional Intelligence Test) é o instrumento de habilidade mais validado academicamente, com gabarito baseado em consenso de especialistas, ao contrário de testes de autorrelato populares na internet."}}]}</script>
+</div>
+</div>
+
+
+<!-- ARTIGO: PROCRASTINAÇÃO -->
+<div id="pg-artigo-procrastinacao" class="pg">
+<div class="art-hero">
+  <button class="bc" onclick="go('artigos')">Artigos</button>
+  <p class="art-hero-cat cc-h">Psicologia Cognitiva · Autorregulação</p>
+  <h1>A ciência da procrastinação:<br>por que adiamos o que sabemos que devemos fazer</h1>
+  <p class="subtitle">Não é preguiça, não é má gestão do tempo. A procrastinação crônica é, segundo décadas de pesquisa, uma falha específica e previsível de regulação emocional — com mecanismos mapeados e estratégias testadas para reduzi-la.</p>
+  <div class="art-hero-meta"><span>Baseado em: Steel (2007) · Sirois &amp; Pychyl (2013) · Ainslie (1975)</span><span>14 min de leitura</span></div>
+</div>
+<div class="art-body">
+<p class="lead-p">Há um padrão que confunde a explicação popular da procrastinação: a mesma pessoa capaz de disciplina rigorosa em uma área da vida — treinar todos os dias, manter uma dieta, estudar um instrumento por anos — procrastina cronicamente em outra, como responder e-mails difíceis ou preencher formulários. Se procrastinação fosse simplesmente preguiça ou falta de força de vontade, esse padrão não deveria existir: preguiça generalizada afetaria todos os domínios igualmente. Duas décadas de pesquisa convergiram para uma explicação bem mais específica — e mais útil — do que o julgamento moral que normalmente recai sobre quem procrastina.</p>
+
+<nav class="art-toc" aria-label="Sumário do artigo">
+  <p class="art-toc-tit">Neste artigo</p>
+  <ol>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-nao-preguica')">Por que procrastinação não é preguiça</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-desconto')">Desconto temporal: o cérebro que prefere agora</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-regulacao')">Falha na regulação emocional: a teoria de Sirois e Pychyl</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-steel')">A metanálise de Piers Steel: os preditores mais fortes</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-custo')">O custo real: saúde, desempenho e estresse</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-evidencia')">O que a evidência diz sobre reduzir a procrastinação</a></li>
+    <li><a href="#" onclick="event.preventDefault();jumpTo('proc-faq')">Perguntas frequentes</a></li>
+  </ol>
+</nav>
+
+<h2 id="proc-nao-preguica">Por que procrastinação não é preguiça</h2>
+<p>Piers Steel (2007), autor da mais ampla revisão meta-analítica já feita sobre o tema, define procrastinação com precisão: o atraso voluntário de uma ação pretendida, apesar de se esperar estar em pior situação por causa desse atraso. A definição carrega um detalhe crucial — o atraso é <em>voluntário</em> e a pessoa <em>sabe</em> que estará pior. Isso distingue procrastinação de indiferença genuína. Quem é simplesmente preguiçoso não sente culpa nem ansiedade por não agir, porque não se importa com o resultado. Quem procrastina tipicamente se importa profundamente com o resultado — e sofre precisamente por isso, num ciclo de adiamento, culpa e mais adiamento.</p>
+
+<h2 id="proc-desconto">Desconto temporal: o cérebro que prefere agora</h2>
+<p>Uma peça central da explicação vem da economia comportamental. George Ainslie (1975) propôs que os seres humanos não descontam recompensas futuras de forma linear e consistente, mas de forma <em>hiperbólica</em> — o que produz reversões de preferência sistemáticas e previsíveis. Ofereça a alguém R$100 agora ou R$110 amanhã, e a maioria escolhe os R$100 imediatos. Ofereça os mesmos R$100 em 30 dias ou R$110 em 31 dias — o mesmo intervalo de um dia, apenas deslocado para o futuro — e a maioria muda de preferência, escolhendo esperar pelo valor maior. A diferença objetiva entre as opções é idêntica; o que muda é a proximidade temporal, que distorce desproporcionalmente o valor subjetivo de recompensas próximas.</p>
+<p>Esse mecanismo explica por que um prazo "daqui a um mês" não gera ação, mesmo sendo racionalmente urgente, e por que a mesma tarefa, quando o prazo se aproxima, súbita e desproporcionalmente ganha peso motivacional — não porque a pessoa mudou, mas porque a curva de desconto hiperbólico faz a proximidade temporal distorcer o valor percebido. É o mesmo tipo de inconsistência temporal que aparece na distinção entre "querer" e "gostar" documentada na neurociência da dopamina, e ecoa os efeitos de certeza e enquadramento descritos pela teoria das perspectivas de Kahneman e Tversky — vieses distintos, mas construídos sobre a mesma arquitetura cognitiva de avaliação distorcida do tempo e do risco.</p>
+
+<h2 id="proc-regulacao">Falha na regulação emocional: a teoria de Sirois e Pychyl</h2>
+<p>A reformulação mais influente da última década vem de Fuschia Sirois e Timothy Pychyl (2013): procrastinação não é fundamentalmente um problema de gestão de tempo, mas de gestão de humor. Tarefas aversivas — tediosas, ambíguas, ansiogênicas, com recompensa distante — geram afeto negativo. Evitar a tarefa alivia esse desconforto imediatamente, o que reforça negativamente o comportamento de evitação: a pessoa aprende, de forma operante e inconsciente, que adiar produz alívio rápido. O custo dessa reparação de humor de curto prazo é pago pelo "eu futuro", que herda a tarefa intacta, agora com prazo mais apertado e ansiedade acumulada.</p>
+<p>Esse déficit específico — a incapacidade de tolerar desconforto emocional imediato em favor de um benefício futuro — é, notavelmente, uma falha situada precisamente no quarto ramo do modelo de inteligência emocional de Mayer e Salovey: a gestão ou regulação da emoção. Não é coincidência que os dois fenômenos apareçam juntos na literatura recente; <a class="inline-link" href="#" onclick="event.preventDefault();go('artigo-inteligencia-emocional')">exploramos esse modelo em detalhe em outro artigo</a>, que ajuda a situar a procrastinação dentro de um quadro mais amplo de competências emocionais.</p>
+
+<div class="pullq"><p>"Procrastinar não é um problema de gestão do tempo. É, na sua essência, um problema de gestão do humor — a priorização de como nos sentimos agora sobre o que precisamos fazer para o nosso eu futuro."</p><cite>Sirois &amp; Pychyl · Social and Personality Psychology Compass, 2013</cite></div>
+
+<h2 id="proc-steel">A metanálise de Piers Steel: os preditores mais fortes</h2>
+<p>A meta-análise de Steel (2007), publicada na <em>Psychological Bulletin</em>, agregou décadas de estudos para classificar os preditores mais robustos da procrastinação. No topo da lista: baixa autoeficácia — a crença na própria capacidade de executar a tarefa com sucesso, o mesmo constructo central ao trabalho de Albert Bandura — seguida de impulsividade, aversão à tarefa e déficits gerais de autorregulação. Um achado que contraria a explicação popular mais comum: perfeccionismo, com frequência apontado como a causa "nobre" da procrastinação ("eu adio porque quero fazer perfeito"), mostrou correlação fraca e inconsistente com o comportamento de procrastinar na evidência agregada.</p>
+<p>Steel e König (2006) formalizaram esses achados numa equação — a Teoria da Motivação Temporal — que integra valor esperado da tarefa, probabilidade de sucesso, impulsividade individual e distância temporal até o prazo. Em termos simples: a motivação para agir cresce com a expectativa de sucesso e o valor da tarefa, e cai proporcionalmente com o quanto a recompensa está distante e o quanto a pessoa é, por temperamento, sensível a essa distância. É uma formalização matemática precisamente do mecanismo de desconto hiperbólico descrito por Ainslie décadas antes.</p>
+
+<h2 id="proc-custo">O custo real: saúde, desempenho e estresse</h2>
+<p>Dianne Tice e Roy Baumeister (1997) acompanharam estudantes universitários ao longo de um semestre inteiro, medindo procrastinação, desempenho acadêmico, estresse e sintomas de saúde repetidamente. O padrão encontrado foi contraintuitivo em sua primeira metade: no início do semestre, procrastinadores relatavam <em>menos</em> estresse e <em>menos</em> sintomas do que seus colegas — um benefício real, ainda que temporário, do adiamento. Conforme os prazos se aproximavam, esse padrão se invertia dramaticamente: procrastinadores relatavam significativamente mais estresse, mais sintomas de saúde e notas finais piores. O saldo ao longo do semestre completo foi claramente negativo — a procrastinação não é relaxamento gratuito, é o adiamento de um custo que retorna com juros.</p>
+
+<h2 id="proc-evidencia">O que a evidência diz sobre reduzir a procrastinação</h2>
+<p>Um mecanismo bem documentado é o das "intenções de implementação" — planos específicos do tipo "se X, então farei Y" que pré-especificam quando, onde e como uma ação será executada. Gollwitzer e Sheeran (2006), numa meta-análise ampla, mostraram que esse tipo de planejamento simples e específico aumenta consistentemente a taxa de conclusão de metas em domínios variados, reduzindo a dependência da força de vontade no momento da execução.</p>
+<p>Sobre prazos como ferramenta: um experimento elegante de Dan Ariely e Klaus Wertenbroch (2002) comparou desempenho sob prazos impostos externamente, distribuídos ao longo do tempo, contra prazos autoimpostos e um único prazo final flexível. Prazos externos e espaçados produziram o melhor desempenho; quando os próprios participantes podiam escolher livremente seus prazos intermediários, tendiam a distribuí-los de forma subótima, mostrando que a capacidade de autoimpor prazos eficazes é, ela mesma, uma habilidade limitada — reforçando por que reduzir a distância temporal percebida até a recompensa ou consequência, através de compromissos externos e subtarefas concretas, tende a funcionar melhor do que depender apenas de disciplina interna.</p>
+
+<div class="faq-block" id="proc-faq">
+  <h2>Perguntas frequentes</h2>
+  <div class="faq-item"><h3>Procrastinação é o mesmo que preguiça?</h3><p>Não, segundo a definição usada na pesquisa. Preguiça envolve indiferença ao resultado; procrastinação envolve adiar uma ação apesar de se importar com o resultado e esperar estar pior por causa do atraso — o que costuma vir acompanhado de culpa e ansiedade, sentimentos ausentes na indiferença genuína.</p></div>
+  <div class="faq-item"><h3>Procrastinação crônica é um transtorno psicológico?</h3><p>Procrastinação em si não é um diagnóstico clínico formal. Mas quando é crônica, generalizada e significativamente incapacitante, pode estar associada a — ou ser um sintoma de — condições como TDAH ou transtornos de ansiedade. Nesses casos, uma avaliação profissional é o caminho recomendado, já que a procrastinação pode ser um sinal de algo que se beneficia de tratamento direcionado.</p></div>
+  <div class="faq-item"><h3>Prazos autoimpostos realmente ajudam a evitar a procrastinação?</h3><p>Menos do que se costuma pensar. Ariely e Wertenbroch (2002) mostraram que prazos impostos externamente e distribuídos ao longo do tempo superam prazos que a própria pessoa escolhe livremente — sugerindo que compromissos externos, verificáveis por terceiros, tendem a ser mais eficazes do que a autodisciplina isolada.</p></div>
+</div>
+
+<div class="related-box">
+  <p class="related-tit">Leia também</p>
+  <div class="related-list">
+    <a class="related-link" href="#" onclick="event.preventDefault();go('artigo-inteligencia-emocional')"><span class="related-link-tit">Inteligência emocional: mito e ciência</span><span class="related-link-cat">Psic. Social</span></a>
+    <a class="related-link" href="#" onclick="event.preventDefault();go('artigo-dopamina')"><span class="related-link-tit">Dopamina: querer vs. gostar</span><span class="related-link-cat">Neurociência</span></a>
+    <a class="related-link" href="#" onclick="event.preventDefault();go('teoria-prospecto')"><span class="related-link-tit">Teoria das Perspectivas</span><span class="related-link-cat">Economia Comportamental</span></a>
+  </div>
+</div>
+
+<div class="refs-box">
+  <h2>Referências primárias</h2>
+  <div class="ref-row"><span class="ref-n">1</span><div class="ref-txt"><strong>Steel, P.</strong> (2007). The Nature of Procrastination: A Meta-Analytic and Theoretical Review of Quintessential Self-Regulatory Failure. <em>Psychological Bulletin, 133</em>(1), 65-94.<br><a class="ref-doi" href="https://doi.org/10.1037/0033-2909.133.1.65" target="_blank" rel="noopener">doi.org/10.1037/0033-2909.133.1.65</a></div></div>
+  <div class="ref-row"><span class="ref-n">2</span><div class="ref-txt"><strong>Sirois, F. M., &amp; Pychyl, T.</strong> (2013). Procrastination and the Priority of Short-Term Mood Regulation. <em>Social and Personality Psychology Compass, 7</em>(2), 115-127.<br><a class="ref-doi" href="https://doi.org/10.1111/spc3.12011" target="_blank" rel="noopener">doi.org/10.1111/spc3.12011</a></div></div>
+  <div class="ref-row"><span class="ref-n">3</span><div class="ref-txt"><strong>Ainslie, G.</strong> (1975). Specious Reward: A Behavioral Theory of Impulsiveness and Impulse Control. <em>Psychological Bulletin, 82</em>(4), 463-496.<br><a class="ref-doi" href="https://doi.org/10.1037/h0076860" target="_blank" rel="noopener">doi.org/10.1037/h0076860</a></div></div>
+  <div class="ref-row"><span class="ref-n">4</span><div class="ref-txt"><strong>Tice, D. M., &amp; Baumeister, R. F.</strong> (1997). Longitudinal Study of Procrastination, Performance, Stress, and Health. <em>Psychological Science, 8</em>(6), 454-458.<br><a class="ref-doi" href="https://doi.org/10.1111/j.1467-9280.1997.tb00460.x" target="_blank" rel="noopener">doi.org/10.1111/j.1467-9280.1997.tb00460.x</a></div></div>
+  <div class="ref-row"><span class="ref-n">5</span><div class="ref-txt"><strong>Gollwitzer, P. M., &amp; Sheeran, P.</strong> (2006). Implementation Intentions and Goal Achievement: A Meta-Analysis. <em>Advances in Experimental Social Psychology, 38</em>, 69-119.<br><a class="ref-doi" href="https://doi.org/10.1016/S0065-2601(06)38002-1" target="_blank" rel="noopener">doi.org/10.1016/S0065-2601(06)38002-1</a></div></div>
+  <div class="ref-row"><span class="ref-n">6</span><div class="ref-txt"><strong>Ariely, D., &amp; Wertenbroch, K.</strong> (2002). Procrastination, Deadlines, and Performance: Self-Control by Precommitment. <em>Psychological Science, 13</em>(3), 219-224.<br><a class="ref-doi" href="https://doi.org/10.1111/1467-9280.00441" target="_blank" rel="noopener">doi.org/10.1111/1467-9280.00441</a></div></div>
+</div>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Procrastinação é o mesmo que preguiça?","acceptedAnswer":{"@type":"Answer","text":"Não. Preguiça envolve indiferença ao resultado; procrastinação envolve adiar uma ação apesar de se importar com o resultado e esperar estar pior por causa do atraso, o que costuma vir acompanhado de culpa e ansiedade."}},{"@type":"Question","name":"Procrastinação crônica é um transtorno psicológico?","acceptedAnswer":{"@type":"Answer","text":"Procrastinação em si não é um diagnóstico clínico formal, mas quando é crônica e incapacitante pode estar associada a condições como TDAH ou transtornos de ansiedade, casos em que avaliação profissional é recomendada."}},{"@type":"Question","name":"Prazos autoimpostos realmente ajudam a evitar a procrastinação?","acceptedAnswer":{"@type":"Answer","text":"Menos do que se costuma pensar. Pesquisa mostra que prazos impostos externamente e distribuídos ao longo do tempo superam prazos escolhidos livremente pela própria pessoa."}}]}</script>
+</div>
+</div>
+
 <!-- TEORIAS INDEX -->
 <div id="pg-teorias" class="pg">
 <div class="ph"><p class="pk">Grandes teorias</p><h1>As estruturas que explicam a mente</h1><p>Das teorias fundadoras do século XIX às revisões contemporâneas — os modelos que moldaram como entendemos o comportamento humano, com contexto histórico, conceitos centrais, base empírica e críticas. Cada teoria tem sua página dedicada com profundidade acadêmica.</p></div>
@@ -1464,7 +1652,7 @@ footer{grid-template-columns:1fr 1fr;padding:2rem 1.5rem}
 
 <script>
 // ─── ROUTING ───────────────────────────────────────────────
-const ALL_PAGES = ['home','artigos','artigo-vies','artigo-espectador','artigo-dopamina','artigo-milgram','artigo-memoria','artigo-tribalismo','artigo-dunning','artigo-desamparo','artigo-apego','artigo-placebo','artigo-fluxo','artigo-expertise','artigo-neuroplasticidade','teorias','teoria-func','teoria-psic','teoria-behav','teoria-maslow','teoria-disso','teoria-banda','teoria-ident','teoria-prospecto','teoria-dual','pesquisadores','pesq-kahneman','pesq-loftus','pesq-sapolsky','pesq-bandura','pesq-vygotsky','pesq-loftus2','biblioteca','glossario','forum'];
+const ALL_PAGES = ['home','artigos','artigo-vies','artigo-espectador','artigo-dopamina','artigo-milgram','artigo-memoria','artigo-tribalismo','artigo-dunning','artigo-desamparo','artigo-apego','artigo-placebo','artigo-fluxo','artigo-expertise','artigo-neuroplasticidade','artigo-inteligencia-emocional','artigo-procrastinacao','teorias','teoria-func','teoria-psic','teoria-behav','teoria-maslow','teoria-disso','teoria-banda','teoria-ident','teoria-prospecto','teoria-dual','pesquisadores','pesq-kahneman','pesq-loftus','pesq-sapolsky','pesq-bandura','pesq-vygotsky','pesq-loftus2','biblioteca','glossario','forum'];
 
 function go(p){
   document.querySelectorAll('.pg').forEach(el=>el.classList.remove('on'));
@@ -1479,13 +1667,71 @@ function go(p){
     if(ap===p)a.classList.add('on');
   });
   // Highlight parent nav
-  const parentMap={'artigo-vies':'artigos','artigo-espectador':'artigos','artigo-dopamina':'artigos','artigo-milgram':'artigos','artigo-memoria':'artigos','artigo-tribalismo':'artigos','artigo-dunning':'artigos','artigo-desamparo':'artigos','artigo-apego':'artigos','artigo-placebo':'artigos','artigo-fluxo':'artigos','artigo-expertise':'artigos','artigo-neuroplasticidade':'artigos','teoria-func':'teorias','teoria-psic':'teorias','teoria-behav':'teorias','teoria-maslow':'teorias','teoria-disso':'teorias','teoria-banda':'teorias','teoria-ident':'teorias','teoria-prospecto':'teorias','teoria-dual':'teorias','pesq-kahneman':'pesquisadores','pesq-loftus':'pesquisadores','pesq-sapolsky':'pesquisadores','pesq-bandura':'pesquisadores','pesq-vygotsky':'pesquisadores','pesq-loftus2':'pesquisadores'};
+  const parentMap={'artigo-vies':'artigos','artigo-espectador':'artigos','artigo-dopamina':'artigos','artigo-milgram':'artigos','artigo-memoria':'artigos','artigo-tribalismo':'artigos','artigo-dunning':'artigos','artigo-desamparo':'artigos','artigo-apego':'artigos','artigo-placebo':'artigos','artigo-fluxo':'artigos','artigo-expertise':'artigos','artigo-neuroplasticidade':'artigos','artigo-inteligencia-emocional':'artigos','artigo-procrastinacao':'artigos','teoria-func':'teorias','teoria-psic':'teorias','teoria-behav':'teorias','teoria-maslow':'teorias','teoria-disso':'teorias','teoria-banda':'teorias','teoria-ident':'teorias','teoria-prospecto':'teorias','teoria-dual':'teorias','pesq-kahneman':'pesquisadores','pesq-loftus':'pesquisadores','pesq-sapolsky':'pesquisadores','pesq-bandura':'pesquisadores','pesq-vygotsky':'pesquisadores','pesq-loftus2':'pesquisadores'};
   if(parentMap[p]){
     document.querySelectorAll('.navl a').forEach(a=>{if(a.getAttribute('data-p')===parentMap[p])a.classList.add('on');});
   }
   if(p==='glossario')setTimeout(()=>renderGlossario('',''),50);
   if(p==='forum')setTimeout(()=>{renderForum();updateSidebar();},50);
   if(p==='biblioteca')setTimeout(()=>filtBiblio('all',null),50);
+  try{ history.replaceState(null,'', p==='home' ? location.pathname : location.pathname+'#'+p); }catch(e){}
+  updatePageSEO(p);
+}
+
+// ─── SEO TÉCNICO: título, meta description, canonical, JSON-LD por página ──
+function truncateText(s,n){s=s.replace(/\s+/g,' ').trim();return s.length>n ? s.slice(0,n-1).trim()+'…' : s;}
+function setMetaTag(attr,val,content){
+  let el=document.querySelector('meta['+attr+'="'+val+'"]');
+  if(!el){el=document.createElement('meta');el.setAttribute(attr,val);document.head.appendChild(el);}
+  el.setAttribute('content',content);
+}
+function jumpTo(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+}
+function updatePageSEO(p){
+  const SITE='https://psicologia-site.vercel.app/';
+  const page=document.getElementById('pg-'+p);
+  if(!page)return;
+  let title,desc,cat='';
+  if(p==='home'){
+    title='Mente & Comportamento — Psicologia e Neurociência Aplicada';
+    desc='Portal científico de psicologia cognitiva, neurociência e comportamento humano. Artigos, teorias e perfis de pesquisadores com rigor acadêmico e referências primárias.';
+  }else{
+    const h1=page.querySelector('h1');
+    const sub=page.querySelector('.subtitle, .ph p');
+    const catEl=page.querySelector('.art-hero-cat, .pk, .teoria-era, .pesq-field');
+    if(!h1)return;
+    title=h1.textContent.replace(/\s+/g,' ').trim();
+    desc=sub?truncateText(sub.textContent,158):title;
+    cat=catEl?catEl.textContent.replace(/\s+/g,' ').trim():'';
+  }
+  document.title=title+' — Mente & Comportamento';
+  setMetaTag('name','description',desc);
+  setMetaTag('property','og:title',title);
+  setMetaTag('property','og:description',desc);
+  const canon=document.querySelector('link[rel="canonical"]');
+  if(canon)canon.href=SITE+(p!=='home'?'#'+p:'');
+  let dyn=document.getElementById('dyn-ld');
+  if(dyn)dyn.remove();
+  if(p.indexOf('artigo-')===0){
+    const data={
+      '@context':'https://schema.org',
+      '@graph':[
+        {'@type':'Article','headline':title,'description':desc,'articleSection':cat,'inLanguage':'pt-BR','dateModified':new Date().toISOString().slice(0,10),'author':{'@type':'Organization','name':'Mente & Comportamento'},'publisher':{'@type':'Organization','name':'Mente & Comportamento'},'mainEntityOfPage':SITE+'#'+p},
+        {'@type':'BreadcrumbList','itemListElement':[
+          {'@type':'ListItem','position':1,'name':'Início','item':SITE},
+          {'@type':'ListItem','position':2,'name':'Artigos','item':SITE+'#artigos'},
+          {'@type':'ListItem','position':3,'name':title}
+        ]}
+      ]
+    };
+    const s=document.createElement('script');
+    s.type='application/ld+json';s.id='dyn-ld';s.textContent=JSON.stringify(data);
+    document.head.appendChild(s);
+  }
 }
 
 // ─── GLOSSÁRIO ─────────────────────────────────────────────
@@ -1677,6 +1923,12 @@ document.querySelectorAll('.idx-item,.bi,.ge').forEach(el=>{el.style.opacity='0.
 
 // Close modal on bg click
 document.getElementById('modal-new').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ─── DEEP LINK INICIAL: abre direto no artigo se a URL tiver #hash ──────
+(function initFromHash(){
+  const h=location.hash.slice(1);
+  if(h&&ALL_PAGES.indexOf(h)!==-1){ go(h); } else { updatePageSEO('home'); }
+})();
 
 // ─── AUDIO PLAYER: "Ouvir Artigo" (Web Speech API) ──────────
 (function(){
