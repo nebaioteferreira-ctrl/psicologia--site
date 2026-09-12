@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://psicologia-site.vercel.app/sitemap.xml
+Sitemap: https://mentecomportamento.com/sitemap.xml
