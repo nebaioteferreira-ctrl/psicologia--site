@@ -105,4 +105,24 @@
     <lastmod>2026-08-12</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://mentecomportamento.com/sobre.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mentecomportamento.com/contato.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://mentecomportamento.com/privacidade.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mentecomportamento.com/termos.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.3</priority>
+  </url>
 </urlset>

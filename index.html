@@ -345,6 +345,23 @@ a.idx-item{display:grid}
 .essay-note{background:var(--cream);border-left:3px solid var(--gold);padding:1.1rem 1.5rem;margin:2rem 0;font-size:13.5px;line-height:1.7;color:var(--muted)}
 .essay-note strong{color:var(--ink)}
 
+
+.static-footer-links{font-family:var(--m);font-size:11px;letter-spacing:.04em;margin-bottom:.75rem}
+.static-footer-links a{color:var(--muted);text-decoration:none;margin:0 6px}
+.static-footer-links a:hover{color:var(--rust)}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:500;background:var(--ink);color:var(--paper);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-family:var(--s);box-shadow:0 -4px 24px rgba(0,0,0,.2)}
+.cookie-banner p{margin:0;line-height:1.55;color:rgba(245,240,232,.85);font-size:13px;max-width:600px}
+.cookie-banner a{color:#e8522a;text-decoration:underline}
+.cookie-banner-btns{display:flex;gap:.6rem;flex-shrink:0}
+.cookie-banner button{border:none;padding:.6rem 1.3rem;border-radius:4px;font-family:var(--s);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.cookie-accept{background:var(--rust);color:var(--paper)}
+.cookie-accept:hover{background:#a8380d}
+.cookie-decline{background:transparent;color:rgba(245,240,232,.6);border:1px solid rgba(245,240,232,.25) !important}
+.cookie-decline:hover{color:var(--paper);border-color:rgba(245,240,232,.5) !important}
+@media(max-width:640px){.cookie-banner{flex-direction:column;align-items:stretch;text-align:left}.cookie-banner-btns{width:100%}.cookie-banner-btns button{flex:1}}
+footer{grid-template-columns:1.3fr 1fr 1fr 1fr 1fr !important}
+@media(max-width:900px){footer{grid-template-columns:1fr 1fr !important}}
+
 </style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -418,6 +435,7 @@ a.idx-item{display:grid}
 <footer>
   <div><div class="fl" onclick="go('home')">Mente<span>&amp;</span>Comportamento</div><p class="ft">Portal científico de psicologia cognitiva, neurociência e comportamento humano. Conteúdo baseado exclusivamente em pesquisa peer-reviewed.</p></div>
   <div class="fc2"><h4>Páginas</h4><ul><li><a href="/artigos/index.html" onclick="event.preventDefault();go('artigos')">Artigos</a></li><li><a href="/artigos/index.html">Índice rápido de artigos</a></li><li><a onclick="go('teorias')">Teorias</a></li><li><a onclick="go('pesquisadores')">Pesquisadores</a></li><li><a onclick="go('biblioteca')">Biblioteca</a></li><li><a onclick="go('glossario')">Glossário</a></li><li><a onclick="go('forum')">Fórum</a></li></ul></div>
+  <div class="fc2"><h4>Institucional</h4><ul><li><a href="/sobre.html">Sobre</a></li><li><a href="/contato.html">Contato</a></li><li><a href="/privacidade.html">Política de Privacidade</a></li><li><a href="/termos.html">Termos de Uso</a></li></ul></div>
   <div class="fc2"><h4>Bases de dados</h4>
     <a class="fext" href="https://psycnet.apa.org" target="_blank" rel="noopener">APA PsycNET</a>
     <a class="fext" href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubMed — NCBI</a>
@@ -2406,6 +2424,28 @@ document.getElementById('modal-new').addEventListener('click',function(e){if(e.t
   else document.addEventListener('DOMContentLoaded',injectPlayers);
 })();
 
+</script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" style="display:none">
+  <p>Usamos cookies para análise de tráfego (Vercel Analytics) e, quando a publicidade estiver ativa, para personalização de anúncios. Saiba mais na <a href="/privacidade.html">Política de Privacidade</a>.</p>
+  <div class="cookie-banner-btns">
+    <button class="cookie-decline" onclick="handleCookieChoice(false)">Recusar</button>
+    <button class="cookie-accept" onclick="handleCookieChoice(true)">Aceitar</button>
+  </div>
+</div>
+<script>
+(function(){
+  try{
+    if(!localStorage.getItem('mc_cookie_consent')){
+      var b=document.getElementById('cookie-banner');
+      if(b) b.style.display='flex';
+    }
+  }catch(e){}
+})();
+function handleCookieChoice(accepted){
+  try{ localStorage.setItem('mc_cookie_consent', accepted ? 'accepted' : 'declined'); }catch(e){}
+  var b=document.getElementById('cookie-banner');
+  if(b) b.style.display='none';
+}
 </script>
 </body>
 </html>

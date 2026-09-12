@@ -366,6 +366,21 @@ a.idx-item{display:grid}
 .static-footer a{color:var(--rust);text-decoration:none;font-size:13px}
 .static-footer p{font-family:var(--m);font-size:11px;color:var(--muted);margin-top:.75rem}
 @media(max-width:640px){.static-nav{padding:.8rem 1.25rem}.static-nav-links{gap:.75rem}.static-nav-links span{display:none}}
+
+.static-footer-links{font-family:var(--m);font-size:11px;letter-spacing:.04em;margin-bottom:.75rem}
+.static-footer-links a{color:var(--muted);text-decoration:none;margin:0 6px}
+.static-footer-links a:hover{color:var(--rust)}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:500;background:var(--ink);color:var(--paper);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-family:var(--s);box-shadow:0 -4px 24px rgba(0,0,0,.2)}
+.cookie-banner p{margin:0;line-height:1.55;color:rgba(245,240,232,.85);font-size:13px;max-width:600px}
+.cookie-banner a{color:#e8522a;text-decoration:underline}
+.cookie-banner-btns{display:flex;gap:.6rem;flex-shrink:0}
+.cookie-banner button{border:none;padding:.6rem 1.3rem;border-radius:4px;font-family:var(--s);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.cookie-accept{background:var(--rust);color:var(--paper)}
+.cookie-accept:hover{background:#a8380d}
+.cookie-decline{background:transparent;color:rgba(245,240,232,.6);border:1px solid rgba(245,240,232,.25) !important}
+.cookie-decline:hover{color:var(--paper);border-color:rgba(245,240,232,.5) !important}
+@media(max-width:640px){.cookie-banner{flex-direction:column;align-items:stretch;text-align:left}.cookie-banner-btns{width:100%}.cookie-banner-btns button{flex:1}}
+
 </style>
 </head>
 <body>
@@ -441,6 +456,7 @@ a.idx-item{display:grid}
 </div>
 
 <footer class="static-footer">
+  <div class="static-footer-links"><a href="/sobre.html">Sobre</a> · <a href="/contato.html">Contato</a> · <a href="/privacidade.html">Privacidade</a> · <a href="/termos.html">Termos de Uso</a></div>
   <a href="/">← Voltar ao portal Mente &amp; Comportamento</a>
   <p>Conteúdo para fins educacionais e científicos · Baseado em pesquisa peer-reviewed</p>
 </footer>
@@ -563,6 +579,28 @@ a.idx-item{display:grid}
   if(document.readyState!=='loading')injectPlayers();
   else document.addEventListener('DOMContentLoaded',injectPlayers);
 })();
+</script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies" style="display:none">
+  <p>Usamos cookies para análise de tráfego (Vercel Analytics) e, quando a publicidade estiver ativa, para personalização de anúncios. Saiba mais na <a href="/privacidade.html">Política de Privacidade</a>.</p>
+  <div class="cookie-banner-btns">
+    <button class="cookie-decline" onclick="handleCookieChoice(false)">Recusar</button>
+    <button class="cookie-accept" onclick="handleCookieChoice(true)">Aceitar</button>
+  </div>
+</div>
+<script>
+(function(){
+  try{
+    if(!localStorage.getItem('mc_cookie_consent')){
+      var b=document.getElementById('cookie-banner');
+      if(b) b.style.display='flex';
+    }
+  }catch(e){}
+})();
+function handleCookieChoice(accepted){
+  try{ localStorage.setItem('mc_cookie_consent', accepted ? 'accepted' : 'declined'); }catch(e){}
+  var b=document.getElementById('cookie-banner');
+  if(b) b.style.display='none';
+}
 </script>
 </body>
 </html>
